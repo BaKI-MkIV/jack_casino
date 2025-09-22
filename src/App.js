@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Header from "./elements/Header/Header";
+import MainBanner from "./elements/Main-banner/Main-banner";
+import TabsContainer from "./elements/TabsContainer/TabsContainer";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import tab1 from "./tabs/plot.json";
+import tab2 from "./tabs/npcs.json";
+import tab3 from "./tabs/homerules.json";
+
+export default function App() {
+
+    const tabs = [tab1, tab2, tab3];
+
+    return (
+        <div>
+            <Header />
+            <MainBanner />
+            <TabsContainer tabs={tabs} />
+        </div>
+    );
 }
-
-export default App;

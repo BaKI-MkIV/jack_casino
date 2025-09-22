@@ -1,0 +1,50 @@
+.wrapper {
+    padding: 5px;
+    border-radius: 10px;
+
+    background: var(--gold-gradient);
+
+}
+
+.container {
+    overflow: hidden;
+    border-radius: 10px;
+
+    /* контролируем размеры через CSS */
+    max-width: 500px;
+    max-height: 60vh;
+}
+
+.motionDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.separator {
+    height: 8px;
+    width: 100%;
+    background: var(--gold-gradient);
+}
+
+.imgStyle {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        max-height: 35vh;
+    }
+
+    .wrapper{
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        max-height: 20vh;
+    }
+}

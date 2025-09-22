@@ -1,0 +1,39 @@
+.container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+    background-color: var(--container-bg-color);
+}
+
+.tabs button {
+    flex: 1;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--main-text);
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.tabs button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tabs .active {
+    border-bottom: 3px solid var(--main-accent);
+    font-weight: bold;
+}
+
+.content {
+    padding: 20px;
+    background-color: var(--bg-color);
+    color: var(--main-text);
+}

@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+:root {
+
+    --bg-color: #252c37;
+    --container-bg-color: #313b44;
+    --secondary-text: #606467;
+    --main-text: #aaa8ad;
+    --main-accent: #f8c61e;
+    --secondary-accent: #8b4944;
+
+    --bg-overlay: rgba(37, 44, 55, 0.65);
+    --gold-gradient: linear-gradient(145deg, #cfd3d6, #9ea3a8, #4b5055);
+
+
+    --font-size-h1: 48px;
+    --font-size-h2: 24px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+    font-family: 'BringMeAWar';
+    src: url('./assets/fonts/BringMeAWar.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+    font-family: 'RedOctober';
+    src: url('./assets/fonts/RedOctoberRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1, h2 {
+    font-family: 'RedOctober', sans-serif;
+    letter-spacing: 2px;
+    color: var(--main-accent);
+    margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--main-text);
+    font-family: Arial, sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media (max-width: 1200px) {
+    :root {
+        --font-size-h1: 36px;
+        --font-size-h2: 20px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    h1, h2 {
+        letter-spacing: 1px;
+    }
 }
+
+/* Планшеты и телефоны (<768px) */
+@media (max-width: 768px) {
+    :root {
+        --font-size-h1: 28px;
+        --font-size-h2: 18px;
+    }
+
+    body {
+        font-size: 13px;
+        padding: 0 10px;
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+}
+
