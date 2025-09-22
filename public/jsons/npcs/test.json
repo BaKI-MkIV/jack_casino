@@ -1,0 +1,17 @@
+{
+  "title": "Документ",
+  "content": [
+    { "subtitle": "Микротитле" },
+    { "quote": {
+      "content": "чета сказал",
+      "author": "чювак"
+    } },
+    { "text": "Обычный текст" },
+    { "tips": "Подсказка без заголовка" },
+    { "tips": { "title": "Важно", "content": "Подсказка с заголовком" } },
+    { "comment": "Простой комментарий" },
+    { "comment": { "title": "Комментарий", "content": "С заголовком" } },
+    { "image": "/forJsons/example.png" },
+    { "image": { "path": "/forJsons/example.png", "comment": "Подпись" } }
+  ]
+}

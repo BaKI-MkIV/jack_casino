@@ -1,0 +1,62 @@
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--main-accent);
+    font-family: 'RedOctober', sans-serif;
+}
+
+.content p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+
+/* Quote */
+.quote {
+    border-left: 4px solid var(--main-accent);
+    padding-left: 15px;
+    margin: 20px 0;
+    font-style: italic;
+    color: var(--secondary-text);
+}
+
+.quote footer {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    font-style: normal;
+    color: var(--secondary-accent);
+}
+
+/* Tips */
+.tips {
+    background-color: var(--tips-bg);
+    padding: 10px 15px;
+    border-left: 4px solid var(--main-accent);
+    margin: 15px 0;
+}
+
+/* Comment */
+.comment {
+    background-color: var(--comment-bg);
+    padding: 10px 15px;
+    margin: 15px 0 15px 40px;
+    border-left: 4px solid var(--secondary-accent);
+}
+
+/* Image */
+.imageBlock {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.imageBlock img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.imageComment {
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+}

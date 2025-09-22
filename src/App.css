@@ -7,12 +7,16 @@
     --main-accent: #f8c61e;
     --secondary-accent: #8b4944;
 
+    --tips-bg: rgba(248, 198, 30, 0.15);  /* фон для подсказок */
+    --comment-bg: rgba(139, 73, 68, 0.15); /* фон для комментариев */
+
     --bg-overlay: rgba(37, 44, 55, 0.65);
     --gold-gradient: linear-gradient(145deg, #cfd3d6, #9ea3a8, #4b5055);
 
 
     --font-size-h1: 48px;
     --font-size-h2: 24px;
+    --font-size-h3: 18px;
 }
 
 @font-face {
@@ -31,7 +35,7 @@
     font-display: swap;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-family: 'RedOctober', sans-serif;
     letter-spacing: 2px;
     color: var(--main-accent);
@@ -40,6 +44,7 @@ h1, h2 {
 
 h1 { font-size: var(--font-size-h1); }
 h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h2); }
 
 body {
     margin: 0;
