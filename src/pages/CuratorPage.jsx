@@ -4,9 +4,9 @@ import TabsContainer from "../elements/TabsContainer/TabsContainer";
 export default function CuratorPage() {
 
     const tabs = [
-        "/jsons/tabs/plot.json",
-        "/jsons/tabs/npcs.json",
-        "/jsons/tabs/homerules.json",
+        "/jsons/npcs/curators/morgan.json",
+        "/jsons/npcs/curators/kenneret.json",
+        "/jsons/npcs/curators/riz.json",
     ];
 
     return (

@@ -10,3 +10,10 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
+.link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block; /* или block */
+    text-align: center; /* выравнивание текста внутри */
+    width: 100%; /* чтобы заняло всю ширину header */
+}
