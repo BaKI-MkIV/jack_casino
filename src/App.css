@@ -5,7 +5,7 @@
     --secondary-text: #606467;
     --main-text: #aaa8ad;
     --main-accent: #f8c61e;
-    --secondary-accent: #8b4944;
+    --secondary-accent: #D24D43;
 
     --tips-bg: rgba(248, 198, 30, 0.15);  /* фон для подсказок */
     --comment-bg: rgba(139, 73, 68, 0.15); /* фон для комментариев */
@@ -35,6 +35,14 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'TenorSans';
+    src: url('./assets/fonts/TenorSansRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 h1, h2, h3 {
     font-family: 'RedOctober', sans-serif;
     letter-spacing: 2px;
@@ -51,7 +59,13 @@ body {
     padding: 0;
     background-color: var(--bg-color);
     color: var(--main-text);
-    font-family: Arial, sans-serif;
+    font-family: 'TenorSans', Arial, sans-serif;
+}
+
+.page-container {
+    max-width: 1500px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 @media (max-width: 1200px) {

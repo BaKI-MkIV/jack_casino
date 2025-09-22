@@ -10,14 +10,18 @@
     line-height: 1.5;
 }
 
+.subtitle {
+    padding-top: 20px;
+}
+
 
 /* Quote */
 .quote {
     border-left: 4px solid var(--main-accent);
     padding-left: 15px;
-    margin: 20px 0;
+    margin: 10px 0;
     font-style: italic;
-    color: var(--secondary-text);
+    color: var(--main-text);
 }
 
 .quote footer {
@@ -27,10 +31,14 @@
     color: var(--secondary-accent);
 }
 
+.quote p {
+    white-space: pre-line;
+}
+
 /* Tips */
 .tips {
     background-color: var(--tips-bg);
-    padding: 10px 15px;
+    padding: 5px 15px 10px;
     border-left: 4px solid var(--main-accent);
     margin: 15px 0;
 }
@@ -38,14 +46,14 @@
 /* Comment */
 .comment {
     background-color: var(--comment-bg);
-    padding: 10px 15px;
+    padding: 4px 15px;
     margin: 15px 0 15px 40px;
     border-left: 4px solid var(--secondary-accent);
 }
 
 /* Image */
 .imageBlock {
-    margin: 15px 0;
+    margin: 15px auto;
     text-align: center;
 }
 
@@ -59,4 +67,18 @@
     margin-top: 5px;
     font-size: 0.85rem;
     color: var(--secondary-text);
+}
+
+.link {
+    color: var(--main-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.link:hover {
+    color: var(--secondary-accent);
 }

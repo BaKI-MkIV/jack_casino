@@ -1,11 +1,11 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./elements/Header/Header";
 import MainBanner from "./elements/Main-banner/Main-banner";
 import TabsContainer from "./elements/TabsContainer/TabsContainer";
-import JsonPage from "./elements/JsonElem/JsonPage";
+import CuratorPage from "./pages/CuratorPage";
 
 import "./App.css";
-
 
 const tabs = [
     "/jsons/tabs/plot.json",
@@ -14,13 +14,19 @@ const tabs = [
 ];
 
 export default function App() {
-
     return (
         <div>
             <Header />
-            <MainBanner />
-            <TabsContainer tabPaths={tabs} />
-            {/*<JsonPage src="/jsons/npcs/test.json" />*/}
+            <Routes>
+                <Route path="/" element={(
+                    <>
+                        <MainBanner />
+                        <TabsContainer tabPaths={tabs} />
+                    </>
+                )} />
+                <Route path="/curators" element={<CuratorPage />} /> {/* Маршрут для кураторов */}
+                <Route path="*" element={<div>Страница не найдена</div>} /> {/* 404, опционально */}
+            </Routes>
         </div>
     );
 }

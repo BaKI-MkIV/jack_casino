@@ -12,6 +12,7 @@
     { "comment": "Простой комментарий" },
     { "comment": { "title": "Комментарий", "content": "С заголовком" } },
     { "image": "/forJsons/example.png" },
-    { "image": { "path": "/forJsons/example.png", "comment": "Подпись" } }
+    { "image": { "path": "/forJsons/example.png", "comment": "Подпись" } },
+    {"link": { "path": "https://www.book.com", "wrap": "Книга" }}
   ]
 }

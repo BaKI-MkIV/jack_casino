@@ -1,7 +1,7 @@
 .container {
     width: 100%;
     max-width: 1500px;
-    margin: 0 auto;
+    margin: 20px auto;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -18,7 +18,8 @@
     border: none;
     cursor: pointer;
     color: var(--main-text);
-    font-size: 16px;
+    font-family: 'TenorSans', Arial, sans-serif;
+    font-size: 18px;
     transition: background 0.2s;
 }
 
