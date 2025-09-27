@@ -1,12 +1,13 @@
+// TabsContainer.jsx
 import React, { useState, useEffect } from "react";
 import JsonRenderer from "../JsonElem/JsonRenderer";
+import SubTabsContainer from "../SubTabsContainer/SubTabsContainer";
 import styles from "./TabsContainer.module.css";
 
 export default function TabsContainer({ tabPaths }) {
     const [activeTab, setActiveTab] = useState(0);
     const [tabData, setTabData] = useState([]);
 
-    // Загружаем все JSON при старте
     useEffect(() => {
         Promise.all(
             tabPaths.map((path) =>
@@ -20,7 +21,7 @@ export default function TabsContainer({ tabPaths }) {
                         return null;
                     })
             )
-        ).then((data) => setTabData(data.filter(Boolean))); // убираем null
+        ).then((data) => setTabData(data.filter(Boolean)));
     }, [tabPaths]);
 
     const loadedTabs = tabData;
@@ -39,6 +40,11 @@ export default function TabsContainer({ tabPaths }) {
                     </button>
                 ))}
             </div>
+
+            {/* Сабвкладки (по subtitle) */}
+            {loadedTabs[activeTab] && (
+                <SubTabsContainer data={loadedTabs[activeTab]} />
+            )}
 
             {/* Контент */}
             <div className={styles.content}>

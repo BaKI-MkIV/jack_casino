@@ -21,9 +21,11 @@ export default function MainBanner() {
 
     const players = [
         "/slots/players/anya.png",
-        "/slots/players/stepan.png",
         "/slots/players/nekita.png",
         "/slots/players/gleb.png",
+        "/slots/players/nekita1.png",
+        "/slots/players/stepan.png",
+        "/slots/players/stepan1.png",
     ];
 
     return (
@@ -34,11 +36,7 @@ export default function MainBanner() {
 
             {/* затемнение */}
             <div className={styles.overlay}>
-                {/*<div className={styles.text}>*/}
-                {/*    <h1>&nbsp;&nbsp;&nbsp;JACK IS DEAD&nbsp;</h1>*/}
-                {/*    <h1>MONEY IS FUEL</h1>*/}
-                {/*    <h1>CASINO IS FULL&nbsp;</h1>*/}
-                {/*</div>*/}
+
                 <div className={styles.text}>
                     <h2>ДЖЕК МЕРТВ</h2>
                     <h2>ДЕНЬГИ - ТОПЛИВО</h2>

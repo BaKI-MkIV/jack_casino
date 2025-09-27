@@ -15,6 +15,15 @@
 }
 
 
+.subsubtitle::before {
+    content: "· "; /* интерпункт + пробел */
+}
+
+.subsubtitle {
+    padding-left: 10px;
+}
+
+
 /* Quote */
 .quote {
     border-left: 4px solid var(--main-accent);
