@@ -20,7 +20,7 @@
 }
 
 .subsubtitle {
-    padding-left: 10px;
+    padding-left: 0px;
 }
 
 
@@ -67,8 +67,10 @@
 }
 
 .imageBlock img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
     border-radius: 6px;
 }
 
