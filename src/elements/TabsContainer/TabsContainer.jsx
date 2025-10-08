@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import JsonRenderer from "../JsonElem/JsonRenderer";
+import SubTabsContainer from "../SubTabsContainer/SubTabsContainer";
 import styles from "./TabsContainer.module.css";
 
-export default function TabsContainer({ tabPaths }) {
+const TabsContainer = forwardRef(({ tabPaths }, ref) => {
     const [activeTab, setActiveTab] = useState(0);
     const [tabData, setTabData] = useState([]);
 
-    // Загружаем все JSON при старте
     useEffect(() => {
         Promise.all(
             tabPaths.map((path) =>
@@ -20,14 +20,13 @@ export default function TabsContainer({ tabPaths }) {
                         return null;
                     })
             )
-        ).then((data) => setTabData(data.filter(Boolean))); // убираем null
+        ).then((data) => setTabData(data.filter(Boolean)));
     }, [tabPaths]);
 
     const loadedTabs = tabData;
 
     return (
-        <div className={styles.container}>
-            {/* Вкладки */}
+        <div ref={ref} className={styles.container}>
             <div className={styles.tabs}>
                 {loadedTabs.map((tab, index) => (
                     <button
@@ -39,8 +38,9 @@ export default function TabsContainer({ tabPaths }) {
                     </button>
                 ))}
             </div>
-
-            {/* Контент */}
+            {loadedTabs[activeTab] && (
+                <SubTabsContainer data={loadedTabs[activeTab]} />
+            )}
             <div className={styles.content}>
                 {loadedTabs[activeTab] ? (
                     <JsonRenderer data={loadedTabs[activeTab]} />
@@ -50,4 +50,6 @@ export default function TabsContainer({ tabPaths }) {
             </div>
         </div>
     );
-}
+});
+
+export default TabsContainer;

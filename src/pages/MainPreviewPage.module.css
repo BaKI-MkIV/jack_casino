@@ -1,0 +1,71 @@
+.container {
+
+    pointer-events: none;
+
+    display: flex;
+    flex-direction: column; /* вертикальная колонка */
+    justify-content: center; /* центрируем по вертикали */
+    align-items: center;     /* центрируем по горизонтали */
+    width: 100%;
+    min-height: 100vh;       /* занимает всю высоту окна */
+    box-sizing: border-box;
+}
+
+.content {
+    text-align: center;
+    transform: translateY(3vh); /* смещаем текст вверх на 10% высоты окна */
+    z-index: 10;
+}
+
+.video {
+    pointer-events: none;
+
+    width: 90%;         /* адаптивная ширина */
+    max-width: 1500px;  /* максимум */
+    height: auto;       /* сохраняем пропорции */
+    object-fit: cover;
+
+    background: var(--bg-color);
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        transform: translateY(0vh);
+    }
+
+    .footerText{
+        max-width: 80%;
+    }
+
+    .video {
+        width: 100%; /* на маленьких экранах */
+        max-width: 100%;
+    }
+}
+
+
+.footerText {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    z-index: 10;
+
+    /* Анимация мигания */
+    animation: fadeBlink 2s infinite alternate;
+}
+
+/* Анимация для экранов ≤1200px */
+@media screen and (max-width: 1200px) {
+    .footerText {
+        position: static;
+        margin-top: 40px;
+        text-align: center;
+    }
+}
+
+/* Keyframes для плавного мигания */
+@keyframes fadeBlink {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.2; }
+    100% { opacity: 1; }
+}

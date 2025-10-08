@@ -1,0 +1,43 @@
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.title {
+    text-align: center;
+}
+
+.backButton {
+    margin: 0;
+}
+
+.link:hover {
+    color: var(--secondary-accent);
+    transform: scale(1.1);
+}
+
+.link {
+    display: inline-block;
+    color: var(--secondary-accent-unactive);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative; /* чтобы underline был абсолютным относительно ссылки */
+}
+
+.link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* чуть ниже текста */
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-accent);
+    transition: width 0.3s ease;
+}
+
+.link:hover::after {
+    width: 100%;
+}

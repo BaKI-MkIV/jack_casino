@@ -1,24 +1,29 @@
 :root {
-
-    --bg-color: #252c37;
+    /* Цвета */
+    --bg-color: #1B1919;
     --container-bg-color: #313b44;
     --secondary-text: #606467;
     --main-text: #aaa8ad;
-    --main-accent: #f8c61e;
-    --secondary-accent: #D24D43;
+    --main-accent: #FFFF1A;
+    --main-accent-unactive: #999900;
+    --secondary-accent-unactive: #A73027;
+    --secondary-accent: #DC2011;
+    --white: #FFFFFF;
 
-    --tips-bg: rgba(248, 198, 30, 0.15);  /* фон для подсказок */
-    --comment-bg: rgba(139, 73, 68, 0.15); /* фон для комментариев */
-
+    /* Фоны */
+    --tips-bg: rgba(248, 198, 30, 0.15);
+    --comment-bg: rgba(139, 73, 68, 0.15);
     --bg-overlay: rgba(37, 44, 55, 0.65);
     --gold-gradient: linear-gradient(145deg, #cfd3d6, #9ea3a8, #4b5055);
 
-
-    --font-size-h1: 48px;
-    --font-size-h2: 24px;
+    /* Размеры шрифтов */
+    --font-size-h1: 64px;
+    --font-size-h2: 36px;
     --font-size-h3: 18px;
+    --font-size-h4: 16px;
 }
 
+/* === Шрифты === */
 @font-face {
     font-family: 'BringMeAWar';
     src: url('./assets/fonts/BringMeAWar.ttf') format('truetype');
@@ -43,7 +48,8 @@
     font-display: swap;
 }
 
-h1, h2, h3 {
+/* === Заголовки === */
+h1, h2, h3, h4 {
     font-family: 'RedOctober', sans-serif;
     letter-spacing: 2px;
     color: var(--main-accent);
@@ -52,38 +58,37 @@ h1, h2, h3 {
 
 h1 { font-size: var(--font-size-h1); }
 h2 { font-size: var(--font-size-h2); }
-h3 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+h4 { font-size: var(--font-size-h4); }
 
+/* === Базовый текст === */
 body {
     margin: 0;
     padding: 0;
     background-color: var(--bg-color);
     color: var(--main-text);
     font-family: 'TenorSans', Arial, sans-serif;
+    line-height: 1.5;
 }
 
+/* === Контейнеры === */
 .page-container {
     max-width: 1500px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
+/* === Адаптивность === */
 @media (max-width: 1200px) {
     :root {
-        --font-size-h1: 36px;
-        --font-size-h2: 20px;
+        --font-size-h1: 54px;
+        --font-size-h2: 30px;
     }
 
-    body {
-        font-size: 14px;
-    }
-
-    h1, h2 {
-        letter-spacing: 1px;
-    }
+    body { font-size: 14px; }
+    h1, h2 { letter-spacing: 1px; }
 }
 
-/* Планшеты и телефоны (<768px) */
 @media (max-width: 768px) {
     :root {
         --font-size-h1: 28px;
@@ -95,8 +100,25 @@ body {
         padding: 0 10px;
     }
 
-    h1, h2 {
-        text-align: center;
-    }
+    h1, h2 { text-align: center; }
 }
 
+
+
+.fade-in {
+    animation: fadeIn 0.25s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.25s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

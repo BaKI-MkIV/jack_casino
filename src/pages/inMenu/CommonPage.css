@@ -1,0 +1,8 @@
+/* CommonPage.css */
+.pageContainer {
+    max-width: 1400px;
+    margin: 0 auto; /* центрирует контейнер по горизонтали */
+    padding: 0 20px; /* небольшой внутренний отступ */
+    width: 100%;
+    box-sizing: border-box;
+}

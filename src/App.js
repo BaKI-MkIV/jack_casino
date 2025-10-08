@@ -1,32 +1,143 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Header from "./elements/Header/Header";
-import MainBanner from "./elements/Main-banner/Main-banner";
-import TabsContainer from "./elements/TabsContainer/TabsContainer";
-import CuratorPage from "./pages/CuratorPage";
+//
+// import React, { useState, useRef, useEffect } from "react";
+// import { Routes, Route, useLocation } from "react-router-dom";
+// import MainPreviewPage from "./pages/MainPreviewPage";
+// import MainPage from "./pages/MainPage";
+// import PlotPage from "./pages/inMenu/PlotPage";
+// import "./App.css";
+// import NPCPage from "./pages/inMenu/NPCPage";
+//
+// export default function App() {
+//     const containerRef = useRef(null);
+//     const location = useLocation();
+//
+//     // Сбрасываем hasSeenPreview перед инициализацией showPreview, если на главной
+//     if (location.pathname === "/") {
+//         sessionStorage.setItem("hasSeenPreview", "false");
+//     }
+//
+//     const [showPreview, setShowPreview] = useState(() => {
+//         const hasSeenPreview = sessionStorage.getItem("hasSeenPreview") === "true";
+//         const isMainPage = location.pathname === "/";
+//         return isMainPage && !hasSeenPreview;
+//     });
+//     const [isFading, setIsFading] = useState(false);
+//
+//     const handleExitPreview = () => {
+//         setIsFading(true);
+//         sessionStorage.setItem("hasSeenPreview", "true");
+//     };
+//
+//     // Ставим фокус на контейнер, чтобы ловить клавиши
+//     useEffect(() => {
+//         if (showPreview && containerRef.current) {
+//             containerRef.current.focus();
+//         }
+//     }, [showPreview]);
+//
+//     return (
+//         <div
+//             ref={containerRef}
+//             tabIndex={0}
+//             onKeyDown={showPreview ? handleExitPreview : undefined}
+//             onClick={showPreview ? handleExitPreview : undefined}
+//             style={{ outline: "none" }}
+//             className={isFading ? "fade-out" : "fade-in"}
+//             onAnimationEnd={() => {
+//                 if (isFading) {
+//                     setShowPreview(false);
+//                     setIsFading(false);
+//                 }
+//             }}
+//         >
+//             {showPreview ? (
+//                 <MainPreviewPage />
+//             ) : (
+//                 <Routes>
+//                     <Route path="/" element={<MainPage />} />
+//                     <Route path="/plot" element={<PlotPage />} />
+//                     <Route path="/npcs" element={<NPCPage />} />
+//                     <Route path="*" element={<div>Страница не найдена</div>} />
+//                 </Routes>
+//             )}
+//         </div>
+//     );
+// }
 
+import React, { useState, useRef, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import MainPreviewPage from "./pages/MainPreviewPage";
+import MainPage from "./pages/MainPage";
+import PlotPage from "./pages/inMenu/PlotPage";
 import "./App.css";
-
-const tabs = [
-    "/jsons/tabs/plot.json",
-    "/jsons/tabs/npcs.json",
-    "/jsons/tabs/homerules.json",
-];
+import NPCPage from "./pages/inMenu/NPCPage";
+import HandbookPage from "./pages/inMenu/HandbookPage";
+import HomebrewPage from "./pages/inMenu/HomebrewPage";
+import CreationPage from "./pages/inMenu/CreationPage";
 
 export default function App() {
+    const containerRef = useRef(null);
+    const location = useLocation();
+    const [showPreview, setShowPreview] = useState(() => {
+        if (location.pathname === "/") {
+            sessionStorage.setItem("hasSeenPreview", "false");
+        }
+        const hasSeenPreview = sessionStorage.getItem("hasSeenPreview") === "true";
+        const isMainPage = location.pathname === "/";
+        return isMainPage && !hasSeenPreview;
+    });
+    const [isFading, setIsFading] = useState(false);
+    const [currentPath, setCurrentPath] = useState(location.pathname);
+
+    // Отслеживаем смену маршрута
+    useEffect(() => {
+        if (location.pathname !== currentPath && !showPreview) {
+            setIsFading(true); // Запускаем затухание при смене маршрута
+        }
+    }, [location.pathname, currentPath, showPreview]);
+
+    // Ставим фокус на контейнер для MainPreviewPage
+    useEffect(() => {
+        if (showPreview && containerRef.current) {
+            containerRef.current.focus();
+        }
+    }, [showPreview]);
+
+    const handleExitPreview = () => {
+        setIsFading(true);
+        sessionStorage.setItem("hasSeenPreview", "true");
+    };
+
     return (
-        <div>
-            <Header />
-            <Routes>
-                <Route path="/" element={(
-                    <>
-                        <MainBanner />
-                        <TabsContainer tabPaths={tabs} />
-                    </>
-                )} />
-                <Route path="/curators" element={<CuratorPage />} /> {/* Маршрут для кураторов */}
-                <Route path="*" element={<div>Страница не найдена</div>} /> {/* 404, опционально */}
-            </Routes>
+        <div
+            ref={containerRef}
+            tabIndex={0}
+            onKeyDown={showPreview ? handleExitPreview : undefined}
+            onClick={showPreview ? handleExitPreview : undefined}
+            style={{ outline: "none" }}
+            className={isFading ? "fade-out" : "fade-in"}
+            onAnimationEnd={() => {
+                if (isFading) {
+                    setCurrentPath(location.pathname); // Обновляем путь после затухания
+                    setShowPreview(location.pathname === "/" && sessionStorage.getItem("hasSeenPreview") !== "true");
+                    setIsFading(false); // Переключаем на fade-in
+                }
+            }}
+        >
+            {showPreview ? (
+                <MainPreviewPage />
+            ) : (
+                <Routes location={currentPath}>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/plot" element={<PlotPage />} />
+                    <Route path="/npc" element={<NPCPage />} />
+                    <Route path="/handbook" element={<HandbookPage />} />
+                    <Route path="/homebrew" element={<HomebrewPage />} />
+                    <Route path="/creation" element={<CreationPage />} />
+
+                    <Route path="*" element={<div>Страница не найдена</div>} />
+                </Routes>
+            )}
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import Reel from "../Reel/Reel"; // путь к твоему компоненту Reel
+import Reel from "../Reel/Reel";
 import styles from "./Main-banner.module.css";
 
 export default function MainBanner() {
@@ -21,24 +21,19 @@ export default function MainBanner() {
 
     const players = [
         "/slots/players/anya.png",
-        "/slots/players/stepan.png",
         "/slots/players/nekita.png",
         "/slots/players/gleb.png",
+        "/slots/players/nekita1.png",
+        "/slots/players/stepan.png",
+        "/slots/players/stepan1.png",
     ];
 
     return (
-        <div className={styles.container}>
+        <div id="mainBanner" className={styles.container}>
             <Reel images={tc} duration={2.3} />
             <Reel images={curators} duration={1.5} />
             <Reel images={players} duration={2.5} />
-
-            {/* затемнение */}
             <div className={styles.overlay}>
-                {/*<div className={styles.text}>*/}
-                {/*    <h1>&nbsp;&nbsp;&nbsp;JACK IS DEAD&nbsp;</h1>*/}
-                {/*    <h1>MONEY IS FUEL</h1>*/}
-                {/*    <h1>CASINO IS FULL&nbsp;</h1>*/}
-                {/*</div>*/}
                 <div className={styles.text}>
                     <h2>ДЖЕК МЕРТВ</h2>
                     <h2>ДЕНЬГИ - ТОПЛИВО</h2>
