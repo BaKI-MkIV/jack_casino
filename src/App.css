@@ -1,10 +1,11 @@
 :root {
     /* Цвета */
-    --bg-color: #252c37;
+    --bg-color: #1B1919;
     --container-bg-color: #313b44;
     --secondary-text: #606467;
     --main-text: #aaa8ad;
-    --main-accent: #f8c61e;
+    --main-accent: #FFFF1A;
+    --main-accent-unactive: #999900;
     --secondary-accent: #D24D43;
 
     /* Фоны */
@@ -14,8 +15,8 @@
     --gold-gradient: linear-gradient(145deg, #cfd3d6, #9ea3a8, #4b5055);
 
     /* Размеры шрифтов */
-    --font-size-h1: 48px;
-    --font-size-h2: 24px;
+    --font-size-h1: 64px;
+    --font-size-h2: 36px;
     --font-size-h3: 18px;
     --font-size-h4: 16px;
 }
@@ -78,8 +79,8 @@ body {
 /* === Адаптивность === */
 @media (max-width: 1200px) {
     :root {
-        --font-size-h1: 36px;
-        --font-size-h2: 20px;
+        --font-size-h1: 54px;
+        --font-size-h2: 30px;
     }
 
     body { font-size: 14px; }
@@ -98,4 +99,24 @@ body {
     }
 
     h1, h2 { text-align: center; }
+}
+
+
+
+.fade-in {
+    animation: fadeIn 0.3s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }

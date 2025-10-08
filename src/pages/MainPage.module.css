@@ -1,0 +1,143 @@
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--bg-color);
+    color: var(--main-accent);
+    position: relative; /* нужно для абсолютного позиционирования меню */
+}
+
+@keyframes neonBlink {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow:
+                0 0 1px var(--main-accent),
+                0 0 2px var(--main-accent),
+                0 0 4px var(--main-accent),
+                0 0 8px var(--main-accent);
+        opacity: 1;
+    }
+    20%, 22%, 24%, 55% {
+        text-shadow: none;
+        opacity: 0.2;
+    }
+}
+
+.titleBlock {
+    position: absolute;
+
+    pointer-events: none;
+
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    line-height: 1.2;
+    animation: neonBlink 2s infinite;
+}
+
+.title {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.mainTitle {
+    font-size: 9rem;
+    margin: 0;
+}
+
+.menu {
+    position: absolute;
+    left: 80px;  /* отступ от левого края */
+    bottom: 160px; /* отступ от низа */
+    display: flex;
+    flex-direction: column;
+}
+
+.menuItem {
+    margin-bottom: 20px;
+    position: relative;
+    cursor: pointer;
+    color: var(--main-accent-unactive);
+    transition: all 0.3s ease;
+}
+
+.menuLink {
+    color: inherit;       /* наследуем цвет от h3 */
+    text-decoration: none; /* убираем подчеркивание по умолчанию */
+    display: inline-block; /* чтобы можно было применять hover эффекты */
+    width: 100%;
+}
+.menuLink:hover {
+    color: var(--main-accent);
+}
+
+.menuItem:hover {
+    color: var(--main-accent);
+    transform: scale(1.1);
+}
+
+.underline {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--main-accent);
+    transition: width 0.3s ease;
+}
+
+.menuItem:hover .underline {
+    width: 100%;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .mainTitle {
+        font-size: 8rem;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Вертикальное расположение элементов */
+        justify-content: center; /* Центрирование по вертикали */
+        align-items: center; /* Центрирование по горизонтали */
+    }
+
+    .titleBlock {
+        position: relative; /* Убираем абсолютное позиционирование */
+        top: auto; /* Сбрасываем top */
+        left: auto; /* Сбрасываем left */
+        transform: none; /* Сбрасываем transform */
+        width: auto; /* Убираем фиксированную ширину */
+        margin-bottom: 40px; /* Отступ снизу для разделения заголовка и меню */
+    }
+
+    .mainTitle {
+        font-size: 4.5rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .menu {
+        position: relative; /* Убираем абсолютное позиционирование */
+        left: auto; /* Сбрасываем left */
+        bottom: auto; /* Сбрасываем bottom */
+        display: flex;
+        flex-direction: column; /* Вертикальное расположение пунктов меню */
+        align-items: center; /* Центрирование по горизонтали */
+        justify-content: center;
+        gap: 15px; /* Расстояние между пунктами */
+    }
+
+    .menuItem {
+        margin-bottom: 0; /* Убираем прежние отступы */
+    }
+}

@@ -1,38 +1,48 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./elements/Header/Header";
-import MainBanner from "./elements/Main-banner/Main-banner";
-import TabsContainer from "./elements/TabsContainer/TabsContainer";
-import CuratorPage from "./pages/CuratorPage";
-import ScrollToTabsButton from "./elements/SupElems/ScrollToTabsButton";
-
+import MainPreviewPage from "./pages/MainPreviewPage";
+import MainPage from "./pages/MainPage";
 import "./App.css";
 
-const tabs = [
-    "/jsons/tabs/plot.json",
-    "/jsons/tabs/npcs.json",
-    "/jsons/tabs/homerules.json",
-];
 export default function App() {
-    const tabsRef = useRef(null); // Ref для TabsContainer
+    const containerRef = useRef(null);
+    const [showPreview, setShowPreview] = useState(true);
+    const [isFading, setIsFading] = useState(false);
+
+    const handleExitPreview = () => {
+        setIsFading(true); // запускаем анимацию fade-out
+    };
+
+    // Ставим фокус на контейнер, чтобы ловить клавиши
+    useEffect(() => {
+        if (showPreview && containerRef.current) {
+            containerRef.current.focus();
+        }
+    }, [showPreview]);
 
     return (
-        <div>
-            <Header />
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <>
-                            <MainBanner id="mainBanner" /> {/* Убедимся, что id задан */}
-                            <TabsContainer tabPaths={tabs} ref={tabsRef} />
-                            <ScrollToTabsButton tabsRef={tabsRef} /> {/* Добавляем кнопку */}
-                        </>
-                    }
-                />
-                <Route path="/curators" element={<CuratorPage />} />
-                <Route path="*" element={<div>Страница не найдена</div>} />
-            </Routes>
+        <div
+            ref={containerRef}
+            tabIndex={0}
+            onKeyDown={showPreview ? handleExitPreview : undefined}
+            onClick={showPreview ? handleExitPreview : undefined}
+            style={{ outline: "none" }}
+            className={isFading ? "fade-out" : "fade-in"}
+            onAnimationEnd={() => {
+                if (isFading) {
+                    setShowPreview(false);
+                    setIsFading(false); // сбрасываем для fade-in следующей страницы
+                }
+            }}
+        >
+            {showPreview ? (
+                <MainPreviewPage />
+            ) : (
+                <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="*" element={<div>Страница не найдена</div>} />
+                </Routes>
+            )}
         </div>
     );
 }
