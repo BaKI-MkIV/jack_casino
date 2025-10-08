@@ -4,10 +4,10 @@ import styles from "./MainPage.module.css";
 
 const menuItems = [
     { label: "Сюжет", path: "/plot" },
-    { label: "Неигровые персонажи", path: "/npcs" },
+    { label: "Неигровые персонажи", path: "/npc" },
     { label: "Справочник", path: "/handbook" },
-    { label: "Домашние правила", path: "/homerules" },
-    { label: "Творчество", path: "/creativity" },
+    { label: "Домашние правила", path: "/homebrew" },
+    { label: "Творчество", path: "/creation" },
 ];
 
 export default function MainPage() {

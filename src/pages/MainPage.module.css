@@ -7,19 +7,97 @@
     position: relative; /* нужно для абсолютного позиционирования меню */
 }
 
+/*@keyframes neonBlink {*/
+/*    0%, 18%, 22%, 25%, 53%, 57%, 100% {*/
+/*        text-shadow:*/
+/*                0 0 2px var(--main-accent),*/
+/*                0 0 4px var(--main-accent),*/
+/*                0 0 8px var(--main-accent),*/
+/*                0 0 12px var(--main-accent),*/
+/*                0 0 16px rgba(var(--main-accent), 0.6),*/
+/*                0 0 20px rgba(var(--main-accent), 0.4);*/
+/*        opacity: 1;*/
+/*        transition: all 0.2s ease-in-out;*/
+/*    }*/
+/*    20%, 24%, 55% {*/
+/*        text-shadow:*/
+/*                0 0 1px var(--main-accent),*/
+/*                0 0 2px var(--main-accent),*/
+/*                0 0 4px rgba(var(--main-accent), 0.5);*/
+/*        opacity: 0.6;*/
+/*        transition: all 0.2s ease-in-out;*/
+/*    }*/
+/*}*/
+
 @keyframes neonBlink {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    0%, 100% {
         text-shadow:
-                0 0 1px var(--main-accent),
-                0 0 2px var(--main-accent),
-                0 0 4px var(--main-accent),
-                0 0 8px var(--main-accent);
+                0 0 2px var(--white),
+                0 0 4px var(--white),
+                0 0 8px var(--main-accent),
+                0 0 16px var(--main-accent);
         opacity: 1;
     }
-    20%, 22%, 24%, 55% {
-        text-shadow: none;
-        opacity: 0.2;
+    10% {
+        text-shadow:
+                0 0 2px var(--white),
+                0 0 4px var(--white),
+                0 0 6px var(--main-accent),
+                0 0 12px var(--main-accent);
+        opacity: 0.9;
     }
+    20% {
+        text-shadow:
+                0 0 1px var(--white),
+                0 0 2px var(--white),
+                0 0 4px var(--main-accent),
+                0 0 8px var(--main-accent);
+        opacity: 0.8;
+    }
+    30% {
+        text-shadow:
+                0 0 2px var(--white),
+                0 0 4px var(--white),
+                0 0 8px var(--main-accent),
+                0 0 16px var(--main-accent);
+        opacity: 1;
+    }
+    40% {
+        text-shadow:
+                0 0 1px var(--white),
+                0 0 3px var(--white),
+                0 0 6px var(--main-accent),
+                0 0 12px var(--main-accent);
+        opacity: 0.85;
+    }
+    50%, 60% {
+        text-shadow:
+                0 0 1px var(--white),
+                0 0 2px var(--white),
+                0 0 4px var(--main-accent),
+                0 0 8px var(--main-accent);
+        opacity: 0.75; /* Минимальное свечение вместо полного затухания */
+    }
+    70% {
+        text-shadow:
+                0 0 2px var(--white),
+                0 0 4px var(--white),
+                0 0 8px var(--main-accent);
+        opacity: 0.85;
+    }
+    80% {
+        text-shadow:
+                0 0 2px var(--white),
+                0 0 4px var(--white),
+                0 0 10px var(--main-accent),
+                0 0 20px var(--main-accent);
+        opacity: 0.95;
+    }
+}
+
+@keyframes neonHue {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(20deg); } /* Лёгкий сдвиг тона */
 }
 
 .titleBlock {
@@ -33,7 +111,8 @@
     text-align: center;
     width: 100%;
     line-height: 1.2;
-    animation: neonBlink 2s infinite;
+    animation: neonBlink 4s ease-in-out infinite;
+    filter: hue-rotate(0deg);
 }
 
 .title {
