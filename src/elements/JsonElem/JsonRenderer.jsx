@@ -136,7 +136,6 @@ export default function JsonRenderer({ data }) {
 
     return (
         <div>
-            <h1 className={styles.title}>{data.title}</h1>
             <div className={styles.content}>{renderBlocks(content)}</div>
         </div>
     );
