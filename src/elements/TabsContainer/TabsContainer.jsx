@@ -3,7 +3,7 @@ import JsonRenderer from "../JsonElem/JsonRenderer";
 import SubTabsContainer from "../SubTabsContainer/SubTabsContainer";
 import styles from "./TabsContainer.module.css";
 
-const TabsContainer = forwardRef(({ tabPaths }, ref) => {
+const TabsContainer = forwardRef(({ tabPaths,  subTabsExist = true }, ref) => {
     const [activeTab, setActiveTab] = useState(0);
     const [tabData, setTabData] = useState([]);
 
@@ -38,7 +38,7 @@ const TabsContainer = forwardRef(({ tabPaths }, ref) => {
                     </button>
                 ))}
             </div>
-            {loadedTabs[activeTab] && (
+            {loadedTabs[activeTab] &&  subTabsExist && (
                 <SubTabsContainer data={loadedTabs[activeTab]} />
             )}
             <div className={styles.content}>
