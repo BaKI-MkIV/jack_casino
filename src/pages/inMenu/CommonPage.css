@@ -7,3 +7,9 @@
     height: 100%;
     box-sizing: border-box;
 }
+
+.notEnd{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 40px;
+}

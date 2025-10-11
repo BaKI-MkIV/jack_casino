@@ -3,9 +3,8 @@ import PageLayout from "./PageLayout";
 import TabsContainer from "../../elements/TabsContainer/TabsContainer";
 
 const tabs = [
-    "/jsons/npcs/curators/morgan.json",
-    "/jsons/npcs/curators/kenneret.json",
-    "/jsons/npcs/curators/riz.json",
+    "/jsons/npcs/curators.json",
+    "/jsons/npcs/handsome_jack.json",
 ];
 
 export default function NPCPage() {

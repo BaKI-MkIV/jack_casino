@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./JsonRenderer.module.css";
 import { slugify } from "../SupFunc";
+import TabsContainer from "../TabsContainer/TabsContainer";
 
 export default function JsonRenderer({ data }) {
     if (!data) return null;
@@ -102,6 +103,17 @@ export default function JsonRenderer({ data }) {
         );
     };
 
+    const renderTabs = (block, index) => {
+        const { tabPaths, subTabsExist } = block.tabs;
+        if (!Array.isArray(tabPaths)) return null;
+
+        return (
+            <div key={index} style={{ marginTop: "1em", marginBottom: "1em" }}>
+                <TabsContainer tabPaths={tabPaths} subTabsExist={subTabsExist ?? true} />
+            </div>
+        );
+    };
+
 
 
     // --- Регистр рендереров ---
@@ -115,6 +127,7 @@ export default function JsonRenderer({ data }) {
         image: renderImage,
         link: renderLink,
         linkOut: renderLinkOut,
+        tabs: renderTabs,
     };
 
 

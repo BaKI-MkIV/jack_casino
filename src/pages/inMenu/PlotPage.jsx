@@ -1,13 +1,15 @@
 import React from "react";
 import PageLayout from "./PageLayout";
-import JsonRenderer from "../../elements/JsonElem/JsonRenderer";
 import TabsContainer from "../../elements/TabsContainer/TabsContainer";
-import LilTabsContainer from "../../elements/TabsContainer/LilTabsContainer";
+import "../../App.css";
 
 export default function PlotPage() {
     return (
         <PageLayout title="Сюжет">
-            <LilTabsContainer src="/jsons/tabs/plot.json" />
+            <TabsContainer tabPaths="/jsons/tabs/plot.json" subTabsExist={true} />
+            <h5 className="notEnd">
+                Эта история все еще пишется...
+            </h5>
         </PageLayout>
     );
 }
