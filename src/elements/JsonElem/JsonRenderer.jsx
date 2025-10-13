@@ -23,12 +23,24 @@ export default function JsonRenderer({ data }) {
         </h4>
     );
 
-    const renderQuote = (block, index) => (
-        <blockquote key={index} className={styles.quote}>
-            <p>{block.quote.content}</p>
-            <footer>- {block.quote.author || "Неизвестно"}</footer>
-        </blockquote>
-    );
+    // const renderQuote = (block, index) => (
+    //     <blockquote key={index} className={styles.quote}>
+    //         <p>{block.quote.content}</p>
+    //         <footer>- {block.quote.author || "Неизвестно"}</footer>
+    //     </blockquote>
+    // );
+
+    const renderQuote = (block, index) => {
+        const quote = block.quote;
+        return (
+            <blockquote key={index} className={styles.quote}>
+                {Array.isArray(quote.content)
+                    ? renderBlocks(quote.content)
+                    : <p>{quote.content}</p>}
+                {quote.author && <footer>- {quote.author}</footer>}
+            </blockquote>
+        );
+    };
 
     const renderText = (block, index) => <p key={index}>{block.text}</p>;
 
