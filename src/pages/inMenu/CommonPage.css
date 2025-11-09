@@ -4,5 +4,12 @@
     margin: 0 auto; /* центрирует контейнер по горизонтали */
     padding: 0 20px; /* небольшой внутренний отступ */
     width: 100%;
+    height: 100%;
     box-sizing: border-box;
+}
+
+.notEnd{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 40px;
 }

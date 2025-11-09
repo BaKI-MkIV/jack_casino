@@ -19,7 +19,7 @@
     cursor: pointer;
     color: var(--main-text);
     font-family: 'TenorSans', Arial, sans-serif;
-    font-size: 18px;
+    font-size: var(--font-size-h4);
     transition: background 0.2s;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .content {
-    padding: 20px;
+    padding: 10px 20px;
     background-color: var(--bg-color);
     color: var(--main-text);
 }
