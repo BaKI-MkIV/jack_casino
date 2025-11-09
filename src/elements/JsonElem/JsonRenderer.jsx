@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./JsonRenderer.module.css";
 import { slugify } from "../SupFunc";
 import TabsContainer from "../TabsContainer/TabsContainer";
+import ReactMarkdown from "react-markdown";
+
 
 export default function JsonRenderer({ data }) {
     if (!data) return null;
@@ -30,40 +32,69 @@ export default function JsonRenderer({ data }) {
     //     </blockquote>
     // );
 
+    // const renderQuote = (block, index) => {
+    //     const quote = block.quote;
+    //     return (
+    //         <blockquote key={index} className={styles.quote}>
+    //             {Array.isArray(quote.content)
+    //                 ? renderBlocks(quote.content)
+    //                 : <p>{quote.content}</p>}
+    //             {quote.author && <footer>- {quote.author}</footer>}
+    //         </blockquote>
+    //     );
+    // };
     const renderQuote = (block, index) => {
         const quote = block.quote;
         return (
             <blockquote key={index} className={styles.quote}>
-                {Array.isArray(quote.content)
-                    ? renderBlocks(quote.content)
-                    : <p>{quote.content}</p>}
+                {renderMarkdown(quote.content, index)}
                 {quote.author && <footer>- {quote.author}</footer>}
             </blockquote>
         );
     };
 
-    const renderText = (block, index) => <p key={index}>{block.text}</p>;
+    // const renderText = (block, index) => <p key={index}>{block.text}</p>;
+    const renderText = (block, index) => renderMarkdown(block.text, index);
 
+
+    // const renderTips = (block, index) => {
+    //     const tips = block.tips;
+    //     return (
+    //         <div key={index} className={styles.tips}>
+    //             {tips.title && <h4>{tips.title}</h4>}
+    //             {Array.isArray(tips.content)
+    //                 ? renderBlocks(tips.content)
+    //                 : <p>{tips.content}</p>}
+    //         </div>
+    //     );
+    // };
     const renderTips = (block, index) => {
         const tips = block.tips;
         return (
             <div key={index} className={styles.tips}>
                 {tips.title && <h4>{tips.title}</h4>}
-                {Array.isArray(tips.content)
-                    ? renderBlocks(tips.content)
-                    : <p>{tips.content}</p>}
+                {renderMarkdown(tips.content, index)}
             </div>
         );
     };
 
+    // const renderComment = (block, index) => {
+    //     const comment = block.comment;
+    //     return (
+    //         <div key={index} className={styles.comment}>
+    //             {comment.title && <h4>{comment.title}</h4>}
+    //             {Array.isArray(comment.content)
+    //                 ? renderBlocks(comment.content)
+    //                 : <p>{comment.content}</p>}
+    //         </div>
+    //     );
+    // };
     const renderComment = (block, index) => {
         const comment = block.comment;
         return (
             <div key={index} className={styles.comment}>
                 {comment.title && <h4>{comment.title}</h4>}
-                {Array.isArray(comment.content)
-                    ? renderBlocks(comment.content)
-                    : <p>{comment.content}</p>}
+                {renderMarkdown(comment.content, index)}
             </div>
         );
     };
@@ -124,6 +155,27 @@ export default function JsonRenderer({ data }) {
                 <TabsContainer tabPaths={tabPaths} subTabsExist={subTabsExist ?? true} />
             </div>
         );
+    };
+
+
+    const renderMarkdown = (content, key) => {
+        if (!content) return null;
+
+        // Если массив, рендерим рекурсивно
+        if (Array.isArray(content)) {
+            return content.map((block, index) => (
+                <React.Fragment key={index}>
+                    {renderMarkdown(block, index)}
+                </React.Fragment>
+            ));
+        }
+
+        // Если строка, рендерим Markdown
+        if (typeof content === "string") {
+            return <ReactMarkdown key={key}>{content}</ReactMarkdown>;
+        }
+
+        return null;
     };
 
 
