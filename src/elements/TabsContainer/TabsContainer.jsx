@@ -3,6 +3,22 @@ import JsonRenderer from "../JsonElem/JsonRenderer";
 import SubTabsContainer from "../SubTabsContainer/SubTabsContainer";
 import styles from "./TabsContainer.module.css";
 
+const API_BASE = process.env.REACT_APP_API_URL || '/api';
+
+function buildApiUrl(path) {
+    if (!path) return null;
+
+    if (path.startsWith('http') || path.startsWith('/api')) return path;
+
+    // Приводим путь к виду "npcs/curators"
+    const clean = path
+        .replace(/^\.?\/*jsons\//, '')   // убираем jsons/ или ./jsons/
+        .replace(/\.json$/, '')          // убираем расширение
+        .replace(/^\/+/, '');            // убираем ведущие слэши
+
+    return `${API_BASE}/${clean}`;
+}
+
 const TabsContainer = forwardRef(({ tabPaths, subTabsExist = true }, ref) => {
     const [activeTab, setActiveTab] = useState(0);
     const [tabData, setTabData] = useState([]);
@@ -11,22 +27,26 @@ const TabsContainer = forwardRef(({ tabPaths, subTabsExist = true }, ref) => {
     useEffect(() => {
         if (!tabPaths || tabPaths.length === 0) return;
 
-        // Если один файл, загружаем как массив с одним элементом
         const paths = Array.isArray(tabPaths) ? tabPaths : [tabPaths];
 
         Promise.all(
-            paths.map((path) =>
-                fetch(path)
-                    .then((res) => {
-                        if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
-                        return res.json();
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                        return null;
-                    })
-            )
-        ).then((data) => setTabData(data.filter(Boolean)))
+            paths.map(async (path) => {
+                const url = buildApiUrl(path);
+                try {
+                    const res = await fetch(url);
+                    if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status} (${url})`);
+                    return await res.json();
+                } catch (err) {
+                    console.error('Ошибка при загрузке:', err);
+                    return null;
+                }
+            })
+        )
+            .then((data) => {
+                const valid = data.filter(Boolean);
+                if (valid.length === 0) setError('Не удалось загрузить данные');
+                setTabData(valid);
+            })
             .catch((err) => setError(err.message));
     }, [tabPaths]);
 
@@ -35,10 +55,7 @@ const TabsContainer = forwardRef(({ tabPaths, subTabsExist = true }, ref) => {
     if (error) return <p className={styles.error}>Ошибка: {error}</p>;
     if (!loadedTabs || loadedTabs.length === 0) return <p className={styles.loading}>Загрузка...</p>;
 
-    // Определяем, показывать ли SubTabsContainer
     const showSubTabs = subTabsExist && loadedTabs[activeTab];
-
-    // Если только один файл, скрываем верхние вкладки, чтобы вести себя как LilTabsContainer
     const showTopTabs = loadedTabs.length > 1;
 
     return (

@@ -25,24 +25,6 @@ export default function JsonRenderer({ data }) {
         </h4>
     );
 
-    // const renderQuote = (block, index) => (
-    //     <blockquote key={index} className={styles.quote}>
-    //         <p>{block.quote.content}</p>
-    //         <footer>- {block.quote.author || "Неизвестно"}</footer>
-    //     </blockquote>
-    // );
-
-    // const renderQuote = (block, index) => {
-    //     const quote = block.quote;
-    //     return (
-    //         <blockquote key={index} className={styles.quote}>
-    //             {Array.isArray(quote.content)
-    //                 ? renderBlocks(quote.content)
-    //                 : <p>{quote.content}</p>}
-    //             {quote.author && <footer>- {quote.author}</footer>}
-    //         </blockquote>
-    //     );
-    // };
     const renderQuote = (block, index) => {
         const quote = block.quote;
         return (
@@ -53,21 +35,8 @@ export default function JsonRenderer({ data }) {
         );
     };
 
-    // const renderText = (block, index) => <p key={index}>{block.text}</p>;
     const renderText = (block, index) => renderMarkdown(block.text, index);
 
-
-    // const renderTips = (block, index) => {
-    //     const tips = block.tips;
-    //     return (
-    //         <div key={index} className={styles.tips}>
-    //             {tips.title && <h4>{tips.title}</h4>}
-    //             {Array.isArray(tips.content)
-    //                 ? renderBlocks(tips.content)
-    //                 : <p>{tips.content}</p>}
-    //         </div>
-    //     );
-    // };
     const renderTips = (block, index) => {
         const tips = block.tips;
         return (
@@ -78,17 +47,6 @@ export default function JsonRenderer({ data }) {
         );
     };
 
-    // const renderComment = (block, index) => {
-    //     const comment = block.comment;
-    //     return (
-    //         <div key={index} className={styles.comment}>
-    //             {comment.title && <h4>{comment.title}</h4>}
-    //             {Array.isArray(comment.content)
-    //                 ? renderBlocks(comment.content)
-    //                 : <p>{comment.content}</p>}
-    //         </div>
-    //     );
-    // };
     const renderComment = (block, index) => {
         const comment = block.comment;
         return (
@@ -99,23 +57,24 @@ export default function JsonRenderer({ data }) {
         );
     };
 
+    const IMAGE_BASE = process.env.REACT_APP_IMAGE_URL || '/images';
+
     const renderImage = (block, index) => {
         const image = block.image;
+        const getSrc = (img) => typeof img === 'string'
+            ? `${IMAGE_BASE}/${img}`
+            : `${IMAGE_BASE}/${img.path}`;
+
         return (
             <div key={index} className={styles.imageBlock}>
-                {typeof image === "string" ? (
-                    <img src={image} alt="" />
-                ) : (
-                    <>
-                        <img src={image.path} alt="" />
-                        {image.comment && (
-                            <p className={styles.imageComment}>{image.comment}</p>
-                        )}
-                    </>
+                <img src={getSrc(image)} alt="" />
+                {typeof image !== 'string' && image.comment && (
+                    <p className={styles.imageComment}>{image.comment}</p>
                 )}
             </div>
         );
     };
+
 
     const renderLink = (block, index) => {
         const link = block.link;
