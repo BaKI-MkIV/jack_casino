@@ -9,5 +9,5 @@
 │   ├── jsons/
 │   │   └── npcs/curators.json
 │   └── public/
-│       └── images/
-│           └── curator-empire.jpg
+│       └── assets/
+│           └── images/curator-empire.jpg
